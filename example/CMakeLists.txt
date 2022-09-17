@@ -1,0 +1,5 @@
+set(example_SRC src/main.cpp)
+add_executable(example ${example_SRC})
+target_link_libraries(example PRIVATE pio-lib)
+target_compile_features(example PRIVATE cxx_std_20)
+target_compile_options(example PRIVATE ${COMPILE_OPTIONS})

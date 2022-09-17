@@ -1,0 +1,17 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+# BinPackArguments: false
+# BinPackParameters: false
+# ExperimentalAutoDetectBinPacking: false
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortFunctionsOnASingleLine: None
+ColumnLimit: 80
+IndentWidth: 4
+SortIncludes: false
+BreakConstructorInitializers: BeforeComma
+NamespaceIndentation: None
+QualifierAlignment: Right
+AlignTrailingComments: true
+AlignEscapedNewlines: Left
+SpaceAfterTemplateKeyword: false

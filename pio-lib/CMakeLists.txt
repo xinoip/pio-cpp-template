@@ -1,0 +1,11 @@
+set(pio-lib_SRC src/mymath.cpp include/mymath.hpp)
+add_library(pio-lib ${pio-lib_SRC})
+target_include_directories(pio-lib PUBLIC include)
+target_compile_features(pio-lib PRIVATE cxx_std_20)
+target_compile_options(pio-lib PRIVATE ${COMPILE_OPTIONS})
+
+set(pio-lib_TEST_SRC test/main.cpp)
+add_executable(pio-lib_TEST ${pio-lib_TEST_SRC})
+target_link_libraries(pio-lib_TEST PRIVATE pio-lib)
+target_compile_features(pio-lib_TEST PRIVATE cxx_std_20)
+target_compile_options(pio-lib_TEST PRIVATE ${COMPILE_OPTIONS})
