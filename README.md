@@ -14,11 +14,21 @@ My C++ project starter template.
 
 ## Build
 
-Setup [vcpkg](https://github.com/microsoft/vcpkg), `cmake`, `clang-tidy`, `clang-format`.
+Build it with with CMake:
 
 ```sh
 cmake -S . -B build
 cmake --build build
+```
+
+...or use convenient development scripts:
+
+```sh
+./script/clean.sh   # clean build files and such
+./script/config.sh  # shared config for all scripts
+./script/build.sh   # build with cmake
+./script/run.sh     # run the built output
+./script/dev.sh     # build&run in one go
 ```
 
 You can find the generated outputs at following locations:
@@ -27,5 +37,5 @@ You can find the generated outputs at following locations:
 ./build/pio_math/libpio_math.a
 ./build/test/pio_math_test
 ./build/example/example
-./compile_commands.json
+./build/compile_commands.json
 ```

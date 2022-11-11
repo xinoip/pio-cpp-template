@@ -11,7 +11,7 @@ IndentWidth: 4
 SortIncludes: false
 BreakConstructorInitializers: BeforeComma
 NamespaceIndentation: None
-QualifierAlignment: Right
+QualifierAlignment: Left
 AlignTrailingComments: true
 AlignEscapedNewlines: Left
 SpaceAfterTemplateKeyword: false

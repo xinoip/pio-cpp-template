@@ -1,10 +1,10 @@
 #include "pio_math.hpp"
-#include <cstdio>
+#include <spdlog/spdlog.h>
 
 namespace Pio {
 
 void libmain() {
-    printf("hello from pio_math!\n");
+    spdlog::info("hello from pio_math!\n");
 }
 
 int add(int x, int y) {

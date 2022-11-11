@@ -3,3 +3,4 @@ compile_commands.json
 .cache/
 vcpkg_installed/
 out.*
+tmp_run_dir/

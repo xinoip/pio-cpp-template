@@ -1,6 +1,13 @@
 #!/bin/bash
-cd "$(dirname "$0")";
+cd `dirname $0`
 cd ..;
 
-./build/example/example > out.txt;
-code out.txt;
+. ./script/config.sh;
+
+echo "[INFO] run.sh working directory: `pwd`";
+
+cd $RUNDIR;
+./pio_math_test;
+./example;
+
+echo "[INFO] all done!";

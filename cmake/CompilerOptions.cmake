@@ -1,5 +1,5 @@
 # TODO: make compile options cross platform
-set(COMPILE_OPTIONS
+set(SANE_COMPILER_WARNINGS
     -Wall
     -Wextra
     -Wshadow
