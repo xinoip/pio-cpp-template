@@ -17,6 +17,9 @@ project(
   HOMEPAGE_URL "xinoip.github.io"
   LANGUAGES CXX)
 
+include(TargetOSSetup) # setup OS-specific things, needs to be done after
+                       # project setup
+
 # add compile_commdans.json support, needs to be done after project setup
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 

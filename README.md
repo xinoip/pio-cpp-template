@@ -34,8 +34,8 @@ cmake --build build
 You can find the generated outputs at following locations:
 
 ```sh
-./build/pio_math/libpio_math.a
-./build/test/pio_math_test
-./build/example/example
+./build/pio_math/PioMath_Lib
+./build/test/PioMath_Test
+./build/example/Example
 ./build/compile_commands.json
 ```
