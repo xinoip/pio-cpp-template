@@ -1,4 +1,4 @@
-#include "pio_math.hpp"
+#include <pio_math/pio_math.hpp>
 
 int main(int argc, char *argv[]) {
     (void)argc;

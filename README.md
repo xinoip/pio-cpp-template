@@ -10,7 +10,7 @@ My C++ project starter template.
 - `clang-tidy` analysis with `compile_commands.json` support
 - `clang-format` support
 - `doctest` unit testing integration to `cmake` with `ctest`
-- Can be used with VSCode using [cmake tools extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
+- Integrates well with VSCode using [cmake tools extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
 
 ## Build
 
