@@ -1,4 +1,8 @@
-add_library(pio_math "include/pio_math/pio_math.hpp" "src/pio_math.cpp")
+add_library(
+  pio_math
+  "include/pio_math/pio_math.hpp" "src/pio_math.cpp"
+  "src/arithmetics/counter.hpp" "src/arithmetics/counter.cpp"
+  "src/common/common.hpp" "src/common/common.cpp")
 set_target_properties(
   pio_math
   PROPERTIES OUTPUT_NAME PioMath_Lib
