@@ -11,6 +11,7 @@ My C++ project starter template.
 - `clang-format` support
 - `doctest` unit testing integration to `cmake` with `ctest`
 - Integrates well with VSCode using [cmake tools extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
+- CMake presets support
 
 ## Build
 
@@ -21,7 +22,21 @@ cmake -S . -B build
 cmake --build build
 ```
 
-...or use convenient development scripts:
+You may use CMake presets provided in `CMakePresets.json` (`build/dev` and `build/rel`):
+
+```sh
+cmake --preset dev # configure
+cmake --build dev  # build
+ctest dev          # run tests
+# or
+cmake --preset rel # configure
+cmake --build rel  # build
+ctest rel          # run tests
+```
+
+Since CMake Presets support requires _relatively_ newer CMake version, you may not have the appropriate CMake version.
+
+If above is the case, use convenient development scripts:
 
 ```sh
 ./script/clean.sh   # clean build files and such
