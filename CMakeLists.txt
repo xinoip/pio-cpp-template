@@ -1,38 +1,53 @@
-# cmake stuff
-cmake_minimum_required(VERSION 3.16)
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+cmake_minimum_required(VERSION 3.24)
 
-# cmake scripts from ./cmake
-include(VcpkgIntegration) # sets toolchain file for vcpkg
-include(InsourceGuard) # prevents insource build
-include(Config) # extra miscellaneous config for cmake
-include(CompilerOptions) # provides SANE_COMPILER_OPTIONS
-include(DoctestIntegration) # taken from doctest repo
-
-# setup project
 project(
-  "pio_math"
+  pio_template
   VERSION 0.1.0
-  DESCRIPTION "a project"
-  HOMEPAGE_URL "xinoip.github.io"
-  LANGUAGES CXX)
+  LANGUAGES C CXX)
 
-include(TargetOSSetup) # setup OS-specific things, needs to be done after
-                       # project setup
+#
+# Options
+#
+option(ENABLE_SANITIZERS "Enable sanitizers in Debug builds" OFF)
 
-# add compile_commdans.json support, needs to be done after project setup
+#
+# Sane Global Defaults
+#
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
+  message(FATAL_ERROR "In-source builds are not supported.")
+endif()
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_C_EXTENSIONS OFF)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+find_program(CLANG_TIDY_EXECUTABLE NAMES clang-tidy REQUIRED)
+set(CMAKE_C_CLANG_TIDY "${CLANG_TIDY_EXECUTABLE}")
+set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXECUTABLE}")
+add_compile_options(-Wall -Wextra -Wpedantic -Wconversion -Wshadow -Wformat=2)
+set(CMAKE_COMPILE_WARNING_AS_ERROR ON)
+if(ENABLE_SANITIZERS)
+  add_compile_options(
+    "$<$<CONFIG:Debug>:-fsanitize=address,undefined;-fno-omit-frame-pointer;-fno-sanitize-recover=all>"
+  )
+  add_link_options("$<$<CONFIG:Debug>:-fsanitize=address,undefined>")
+endif()
 
-# add ctest support, needs to be done after project setup
-include(CTest)
+#
+# Source Configuration
+#
+add_subdirectory(c_math)
+add_subdirectory(c_math_example)
+add_subdirectory(cxx_math)
+add_subdirectory(cxx_math_example)
 
-# find packages
-
-find_package(spdlog CONFIG REQUIRED)
-find_package(doctest REQUIRED)
-
-# add project modules
-
-add_subdirectory(pio_math)
-add_subdirectory(example)
-add_subdirectory(test)
+#
+# Packaging
+#
+install(
+  TARGETS c_math cxx_math c_math_example cxx_math_example
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib)
+install(DIRECTORY c_math/include/ cxx_math/include/ DESTINATION include)
+set(CPACK_GENERATOR TGZ)
+include(CPack)

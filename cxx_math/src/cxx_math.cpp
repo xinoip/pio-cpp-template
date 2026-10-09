@@ -1,11 +1,11 @@
 #include <pio_math/pio_math.hpp>
-#include <spdlog/spdlog.h>
+#include <cstdio>
 #include <arithmetics/counter.hpp>
 
 namespace Pio {
 
 void libmain() {
-    spdlog::info("hello from pio_math!\n");
+    std::puts("hello from pio_math!");
     count(1, 5);
 }
 
